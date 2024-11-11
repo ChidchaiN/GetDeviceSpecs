@@ -1,6 +1,6 @@
 package org.example.getdevicespecs.utils
 
-interface GetDeviceSpecs {
+interface AndriodDeviceInfoProvider {
 
     fun getDeviceSN(): String?
 

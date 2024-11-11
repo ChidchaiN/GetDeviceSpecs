@@ -13,10 +13,10 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
-class AndriodDeviceInfoProvider(private val context: Context) {
+class AndriodDeviceInfoProvider(private val context: Context) : GetDeviceSpecs {
 
     @SuppressLint("HardwareIds")
-    fun getDeviceSN(): String? {
+    override fun getDeviceSN(): String? {
         return try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
@@ -29,7 +29,7 @@ class AndriodDeviceInfoProvider(private val context: Context) {
         }
     }
 
-    fun getDeviceName(): String? {
+    override fun getDeviceName(): String? {
         return try {
             Build.MODEL
         } catch (e: Exception) {
@@ -39,7 +39,7 @@ class AndriodDeviceInfoProvider(private val context: Context) {
     }
 
     @SuppressLint("MissingPermission")
-    suspend fun getDeviceCurrentLocation(): String? {
+    override suspend fun getDeviceCurrentLocation(): String? {
         val fusedLocationClient: FusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(context)
 

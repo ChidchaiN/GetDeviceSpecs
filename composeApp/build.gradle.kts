@@ -44,6 +44,8 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.kotlinx.coroutines.core)
         }
+//        iosMain.dependencies {
+//        }
     }
 }
 
@@ -77,17 +79,17 @@ dependencies {
     debugImplementation(compose.uiTooling)
 }
 
-tasks.create<Delete>("deleteJar") {
-    delete("build/libs/ComposeApp.jar")
-}
-
-tasks.create<Copy>("createJar") {
-    from("build/intermediates/arr_main_jar/release/")
-    into("libs")
-    include("classes.jar")
-    rename("classes.jar", "ComposeApp.jar")
-}
-
-tasks.named("createJar") {
-    dependsOn("deleteJar", "build")
-}
+//tasks.create<Delete>("deleteJar") {
+//    delete("build/libs/ComposeApp.jar")
+//}
+//
+//tasks.create<Copy>("createJar") {
+//    from("build/intermediates/arr_main_jar/release/")
+//    into("libs")
+//    include("classes.jar")
+//    rename("classes.jar", "ComposeApp.jar")
+//}
+//
+//tasks.named("createJar") {
+//    dependsOn("deleteJar", "build")
+//}
